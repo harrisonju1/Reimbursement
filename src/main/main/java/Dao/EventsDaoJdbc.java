@@ -1,6 +1,6 @@
-package Dao;
+package java.Dao;
 
-import Beans.Events;
+import java.Beans.Events;
 import java.util.*;
 import java.sql.*;
 import java.io.*;

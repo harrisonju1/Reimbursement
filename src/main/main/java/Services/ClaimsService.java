@@ -1,8 +1,8 @@
-package Services;
+package java.Services;
 
-import Dao.ClaimsDao;
-import Beans.Claims;
-import Dao.ClaimsDaoJdbc;
+import java.Dao.ClaimsDao;
+import java.Beans.Claims;
+import java.Dao.ClaimsDaoJdbc;
 
 import java.util.*;
 

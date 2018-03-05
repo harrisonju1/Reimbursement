@@ -1,6 +1,6 @@
-package Dao;
+package java.Dao;
 
-import Beans.Claims;
+import java.Beans.Claims;
 import java.sql.*;
 import java.util.*;
 

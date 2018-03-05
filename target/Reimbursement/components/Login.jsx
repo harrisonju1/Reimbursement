@@ -19,17 +19,14 @@ class Login extends React.Component{
     }
 
     handleSubmit(event) {
-        var username = event.target.username.value;
-        var Password = event.target.Password.value;
-        console.log(username);
-        console.log(Password);
+        alert("that booty so big");
         event.preventDefault();
     }
 
     render(){
         return(
-            <div>
-                <div class="translucent-form-overlay">
+            <div class="translucent-form-overlay">
+                <div>
                     <form onSubmit={this.handleSubmit}>
                         <h3>Log In</h3>
                         <div class="row columns">

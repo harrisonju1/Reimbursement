@@ -1,4 +1,4 @@
-package Beans;
+package java.Beans;
 
 import java.util.*;
 import java.sql.*;
@@ -22,6 +22,10 @@ public class Employee {
         this.departmenthead_id = departmenthead_id;
         this.supervisor_id = supervisor_id;
         this.employee_id = employee_id;
+    }
+
+    public Employee(){
+
     }
 
     public String getFirst_name() {

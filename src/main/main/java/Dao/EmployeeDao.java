@@ -1,7 +1,7 @@
-package Dao;
+package java.Dao;
 
 import java.util.*;
-import Beans.Employee;
+import java.Beans.Employee;
 
 public interface EmployeeDao {
     Employee getByEmployeeID(int employee_id);

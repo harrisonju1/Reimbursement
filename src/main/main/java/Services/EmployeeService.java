@@ -1,8 +1,8 @@
-package Services;
+package java.Services;
 
-import Beans.Employee;
-import Dao.EmployeeDao;
-import Dao.EmployeeDaoJdbc;
+import java.Beans.Employee;
+import java.Dao.EmployeeDao;
+import java.Dao.EmployeeDaoJdbc;
 
 public class EmployeeService {
     private static EmployeeDao employeeDao = new EmployeeDaoJdbc();

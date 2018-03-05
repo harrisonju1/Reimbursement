@@ -1,4 +1,4 @@
-package Beans;
+package java.Beans;
 
 import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;

@@ -1,8 +1,8 @@
-package Services;
+package java.Services;
 
-import Beans.Events;
-import Dao.EventsDao;
-import Dao.EventsDaoJdbc;
+import java.Beans.Events;
+import java.Dao.EventsDao;
+import java.Dao.EventsDaoJdbc;
 import java.util.*;
 
 public class EventsService {

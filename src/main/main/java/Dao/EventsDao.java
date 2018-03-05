@@ -1,5 +1,5 @@
-package Dao;
-import Beans.Events;
+package java.Dao;
+import java.Beans.Events;
 import java.util.*;
 
 public interface EventsDao {

@@ -1,6 +1,6 @@
-package Dao;
+package java.Dao;
 
-import Beans.Employee;
+import java.Beans.Employee;
 import java.util.*;
 import java.sql.*;
 

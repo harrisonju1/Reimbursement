@@ -1,4 +1,4 @@
-package Beans;
+package java.Beans;
 
 import java.sql.*;
 import java.util.Objects;
