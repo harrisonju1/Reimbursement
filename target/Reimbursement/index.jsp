@@ -7,8 +7,7 @@
 
 <body>
 <div id="app"></div>
-
-<script src="bundle.js"></script>
+<h3>hello world</h3>
 </body>
 
 

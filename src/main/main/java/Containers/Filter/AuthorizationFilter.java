@@ -1,15 +1,15 @@
 package java.Containers.Filter;
 
-import com.ex.container.AuthorizationResponseWrapper;
-import com.ex.data.inmem.InMemDB;
-import com.ex.data.inmem.UserTokensDB;
+import java.Containers.AuthorizationResponseWrapper;
+import java.Inmem.InMemDB;
+import java.Inmem.UserTokensDB;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class AuthorizationFilter {
+public class AuthorizationFilter implements Filter{
     private InMemDB<String, Object> tokens;
     private FilterConfig config;
     private String contextPath;

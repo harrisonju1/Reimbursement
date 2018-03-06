@@ -7,7 +7,7 @@ import java.io.IOException;
 
 
 public class LoginController {
-    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException{
-        String out ="";
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException{
+        resp.getWriter().write("cool beans booty so big");
     }
 }
