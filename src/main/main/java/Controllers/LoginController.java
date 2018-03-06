@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-public class LoginController {
+public class LoginController extends HttpServlet{
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException{
         resp.getWriter().write("cool beans booty so big");
     }
