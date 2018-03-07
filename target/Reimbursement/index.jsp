@@ -7,7 +7,6 @@
 
 <body>
 <div id="app"></div>
-<h3>hello world</h3>
 </body>
 
 
