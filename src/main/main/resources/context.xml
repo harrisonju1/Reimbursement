@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <controllers>
-    <controller class="java.Containers.Servlet.Controllers.FrontController" path="/">
+    <controller class="backend.Containers.Servlet.Controllers.FrontController" path="/">
         <handler method="GET">
             <handle>handleGet</handle>
         </handler>
@@ -10,7 +10,7 @@
     </controller>
 
 
-<controller class="java.Containers.Servlet.Controllers.LoginController" path="/login">
+<controller class="backend.Containers.Servlet.Controllers.LoginController" path="/login">
 <handler method="POST">
     <handle>doPost</handle>
 </handler>
