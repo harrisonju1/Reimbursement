@@ -1,6 +1,7 @@
 package backend.Containers.Servlet.Controllers;
 
 
+import backend.Services.AuthorizeService;
 import com.fasterxml.jackson.core.*;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import backend.Beans.Employee;
 import com.google.gson.Gson;
 import backend.Services.JsonSerializer;
 import backend.Services.EmployeeService;
+import sun.tools.java.ClassNotFound;
 
 
 public class LoginController extends HttpServlet{
@@ -20,6 +22,11 @@ public class LoginController extends HttpServlet{
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException{
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e){
+            e.printStackTrace();;
+        }
         //just do it
         BufferedReader reader = req.getReader();
         //create employee e with the login credentials
@@ -32,8 +39,12 @@ public class LoginController extends HttpServlet{
         EmployeeService service = new EmployeeService();
         Employee auth =  service.getEmployeeByUsername(username);
         if(auth.getUsername().equals(username) && auth.getPassword().equals(password)){
-            System.out.println("login successful!");
+            resp.setStatus(200);
+            resp.setHeader("Authorization", AuthorizeService.getToken(e));
+        }else if (auth.getUsername().equals(username)){
+            resp.sendError(HttpServletResponse.SC_UNAUTHORIZED);
         }
+
 
 
     }
