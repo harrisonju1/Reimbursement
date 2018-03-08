@@ -5,10 +5,12 @@ import backend.Containers.Servlet.Dispatcher;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Map;
+
 
 
 public class HandlerMapper {
@@ -19,6 +21,7 @@ public class HandlerMapper {
         //find the context and unmarshall the controllers
         JAXBContext context = JAXBContext.newInstance(Controllers.class);
         Unmarshaller um = context.createUnmarshaller();
+
         String filepath = Dispatcher.class.getClassLoader().getResource("/"+contextFile).getFile().substring(1);
         System.out.println(filepath);
         controllers = (Controllers) um.unmarshal(new FileReader(filepath));

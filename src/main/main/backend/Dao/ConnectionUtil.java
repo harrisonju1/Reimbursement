@@ -21,7 +21,7 @@ public class ConnectionUtil {
     public Connection getConnection() {
         try {
             Properties prop = new Properties();
-            prop.load(new FileReader("/Users/Harrison/Documents/GitHub/Reimbursement/src/main/main/java/Dao/database (1).properties"));
+            prop.load(new FileReader("/Users/Harrison/Documents/GitHub/Reimbursement/src/main/main/backend/Dao/database (1).properties"));
             return DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("username"), prop.getProperty("password"));
         } catch(SQLException e) {
             e.printStackTrace();
