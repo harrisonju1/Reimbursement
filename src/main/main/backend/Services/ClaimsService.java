@@ -11,6 +11,8 @@ public class ClaimsService {
         return claimsDao.getByClaimID(id);
     }
 
+    public Claims getByEventID(int event_id) {return claimsDao.getByEventID(event_id);}
+
     public void createClaim(Claims claim){
         claimsDao.createClaim(claim);
     }

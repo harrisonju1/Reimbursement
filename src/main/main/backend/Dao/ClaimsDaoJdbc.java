@@ -45,6 +45,42 @@ public class ClaimsDaoJdbc implements ClaimsDao{
     }
 
     @Override
+    public Claims getByEventID(int event_id){
+        try(Connection conn = connectionUtil.getConnection()){
+            String standardQuery = "SELECT * FROM claims WHERE event_id = ?";
+            PreparedStatement ps = conn.prepareStatement(standardQuery);
+            ps.setInt(1,event_id);
+
+            ResultSet results = ps.executeQuery();
+//            ArrayList<Claims> claims = new ArrayList<>();
+            while (results.next()){
+                int claim_id = results.getInt("claim_id");
+                event_id = results.getInt("event_id");
+                String reimbursement_type = results.getString("reimbursement_type");
+                int grade = results.getInt("grade");
+                int grade_to_pass = results.getInt("grade_to_pass");
+                Timestamp supervisor_approval_date = results.getTimestamp("supervisor_approval_date");
+                boolean supervisor_approval = results.getBoolean("supervisor_approval");
+                Timestamp department_approval_date = results.getTimestamp("department_approval_date");
+                boolean department_approval = results.getBoolean("department_approval");
+                Timestamp benco_approval_date = results.getTimestamp("benco_approval_date");
+                boolean benco_approval = results.getBoolean("benco_approval");
+                String benco_deny_reason = results.getString("benco_deny_reason");
+
+                //add the row from database to arraylist in an initialized Claims object
+//                claims.add(new Claims(claim_id, supervisor_approval_date, supervisor_approval, department_approval_date, department_approval,
+//                        benco_approval_date,benco_approval,benco_deny_reason));
+                return new Claims(claim_id,event_id, reimbursement_type, grade, grade_to_pass, supervisor_approval_date, supervisor_approval, department_approval_date, department_approval,
+                        benco_approval_date,benco_approval,benco_deny_reason);
+            }
+//            return claims;
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public void createClaim(Claims claim){
         try(Connection conn = connectionUtil.getConnection()){
             String query = "INSERT INTO claims (event_id,reimbursement_type, grade, grade_to_pass, supervisor_approval_date, supervisor_approval," +
