@@ -29,8 +29,38 @@ public class EventsDaoJdbc implements EventsDao {
                 String username = results.getString("username");
 //                events.add(new Events(event_id, reimbursement_type,cost, grade, grade_to_pass,
 //                        event_start,event_end,status, attachments, name));
-                return new Events(reimbursement_type,cost,grade,grade_to_pass,event_start,event_end,status,attachments,username);
+                return new Events(event_id,reimbursement_type,cost,grade,grade_to_pass,event_start,event_end,status,attachments,username);
+            }
 
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public Events getByUsername(String username){
+        try(Connection conn = connectionUtil.getConnection()){
+            String standardQuery = "SELECT * FROM events WHERE username = ?";
+            PreparedStatement ps = conn.prepareStatement(standardQuery);
+            ps.setString(1,username);
+
+            ResultSet results = ps.executeQuery();
+//            ArrayList<Events> events = new ArrayList<>();
+            while (results.next()){
+                int event_id = results.getInt("event_id");
+                String reimbursement_type = results.getString("reimbursement_type");
+                double cost = results.getDouble("cost");
+                int grade = results.getInt("grade");
+                int grade_to_pass = results.getInt("grade_to_pass");
+                Timestamp event_start = results.getTimestamp("event_start");
+                Timestamp event_end = results.getTimestamp("event_end");
+                int status = results.getInt("status");
+                byte[] attachments = results.getBytes("attachments");
+                username = results.getString("username");
+//                events.add(new Events(event_id, reimbursement_type,cost, grade, grade_to_pass,
+//                        event_start,event_end,status, attachments, name));
+                return new Events(event_id,reimbursement_type,cost,grade,grade_to_pass,event_start,event_end,status,attachments,username);
             }
 
         } catch(SQLException e){

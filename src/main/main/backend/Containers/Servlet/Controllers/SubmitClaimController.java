@@ -1,21 +1,15 @@
 package backend.Containers.Servlet.Controllers;
 
-import backend.Services.AuthorizeService;
-import backend.Beans.Events;
-import backend.Services.EventsService;
-import com.fasterxml.jackson.core.*;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Cookie;
 import java.io.IOException;
 import java.io.*;
-import org.json.simple.JSONObject;
-import backend.Beans.Employee;
-import com.google.gson.Gson;
 import backend.Services.JsonSerializer;
-import backend.Services.EmployeeService;
-import sun.tools.java.ClassNotFound;
+import backend.Beans.*;
+import backend.Services.*;
+
 
 public class SubmitClaimController extends HttpServlet{
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -34,14 +28,30 @@ public class SubmitClaimController extends HttpServlet{
                 break;
             }
         }
-        System.out.println(username);
         event.setUsername(username);
         event.setStatus(0);
-
-        EventsService e = new EventsService();
-        System.out.println(event.getCost());
-        System.out.println(event.getUsername());
+        EventsService e = new EventsService();;
         e.createEvent(event);
+        event = e.getByUsername(username);
+
+        //create claims table in jdbc
+        claimUtil(event);
         resp.setStatus(200);
     }
+    public void claimUtil(Events event){
+        ClaimsService c = new ClaimsService();
+        Claims claim = new Claims();
+        claim.setClaim_id(0);
+        claim.setEvent_id(event.getEventID());
+        claim.setReimbursement_type(event.getReimbursementType());
+        claim.setGrade(event.getGrade());
+        claim.setGrade_to_pass(event.getGradeToPass());
+        c.createClaim(claim);
+    }
+
+//    public void reimbursementUtil(Events event){
+//        Reimbursements r = new Reimbursements();
+//        r.setEventID(event.getEventID());
+//        r.setClaimCreated(event.);
+//    }
 }

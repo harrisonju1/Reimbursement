@@ -18,6 +18,7 @@ public class Events {
     private String username;
 
     public Events(){
+        this.event_id = 0;
         this.reimbursement_type = null;
         this.cost = 0;
         this.grade = 0;
@@ -29,8 +30,9 @@ public class Events {
         this.username = null;
     }
 
-    public Events(String reimbursement_type, double cost, int grade, int grade_to_pass, Timestamp event_start, Timestamp event_end,
+    public Events(int event_id, String reimbursement_type, double cost, int grade, int grade_to_pass, Timestamp event_start, Timestamp event_end,
            int status, byte[] attachments, String username){
+        this.event_id = event_id;
         this.reimbursement_type = reimbursement_type;
         this.cost = cost;
         this.grade = grade;
@@ -45,7 +47,7 @@ public class Events {
     public int getEventID() {
         return event_id;
     }
-    public void setEventID(int eventID){this.event_id=eventID;}
+    public void setEventID(int eventID){this.event_id = eventID;}
 
     public String getReimbursementType() {
         return reimbursement_type;

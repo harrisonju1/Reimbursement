@@ -11,6 +11,8 @@ public class EventsService {
         return eventsDao.getByEventID(id);
     }
 
+    public Events getByUsername(String username) {return eventsDao.getByUsername(username);}
+
     public void createEvent(Events event){
         eventsDao.createEvent(event);
     }
