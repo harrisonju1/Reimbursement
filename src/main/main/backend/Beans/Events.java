@@ -15,10 +15,9 @@ public class Events {
     private Timestamp event_end;
     private int status;
     private byte[] attachments;
-    private String name;
+    private String username;
 
     public Events(){
-        this.event_id = 0;
         this.reimbursement_type = null;
         this.cost = 0;
         this.grade = 0;
@@ -27,12 +26,11 @@ public class Events {
         this.event_end = null;
         this.status = 0;
         this.attachments = null;
-        this.name = null;
+        this.username = null;
     }
 
-    public Events(int event_id, String reimbursement_type, double cost, int grade, int grade_to_pass, Timestamp event_start, Timestamp event_end,
-           int status, byte[] attachments, String name){
-        this.event_id = event_id;
+    public Events(String reimbursement_type, double cost, int grade, int grade_to_pass, Timestamp event_start, Timestamp event_end,
+           int status, byte[] attachments, String username){
         this.reimbursement_type = reimbursement_type;
         this.cost = cost;
         this.grade = grade;
@@ -41,16 +39,13 @@ public class Events {
         this.event_end = event_end;
         this.status = status;
         this.attachments = attachments;
-        this.name = name;
+        this.username = username;
     }
 
     public int getEventID() {
         return event_id;
     }
-
-    public void setEventID(int event_id) {
-        this.event_id = event_id;
-    }
+    public void setEventID(int eventID){this.event_id=eventID;}
 
     public String getReimbursementType() {
         return reimbursement_type;
@@ -116,12 +111,12 @@ public class Events {
         this.attachments = attachments;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     @Override
@@ -138,13 +133,13 @@ public class Events {
                 Objects.equals(event_start, events.event_start) &&
                 Objects.equals(event_end, events.event_end) &&
                 Arrays.equals(attachments, events.attachments) &&
-                Objects.equals(name, events.name);
+                Objects.equals(username, events.username);
     }
 
     @Override
     public int hashCode() {
 
-        int result = Objects.hash(event_id, reimbursement_type, cost, grade, grade_to_pass, event_start, event_end, status, name);
+        int result = Objects.hash(event_id, reimbursement_type, cost, grade, grade_to_pass, event_start, event_end, status, username);
         result = 31 * result + Arrays.hashCode(attachments);
         return result;
     }

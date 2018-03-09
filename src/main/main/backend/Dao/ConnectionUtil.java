@@ -24,6 +24,11 @@ public class ConnectionUtil {
     public Connection getConnection() {
         try {
             Properties prop = new Properties();
+            try {
+                Class.forName("org.postgresql.Driver");
+            } catch (ClassNotFoundException e){
+                e.printStackTrace();;
+            }
             prop.load(new FileReader("/Users/Harrison/Documents/GitHub/Reimbursement/src/main/main/backend/Dao/database (1).properties"));
             return DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("username"), prop.getProperty("password"));
         } catch(SQLException e) {

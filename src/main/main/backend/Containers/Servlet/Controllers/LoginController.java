@@ -6,6 +6,7 @@ import com.fasterxml.jackson.core.*;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Cookie;
 import java.io.IOException;
 import java.io.*;
 import org.json.simple.JSONObject;
@@ -39,9 +40,15 @@ public class LoginController extends HttpServlet{
         EmployeeService service = new EmployeeService();
         Employee auth =  service.getEmployeeByUsername(username);
         if(auth.getUsername().equals(username) && auth.getPassword().equals(password)){
+            Cookie cookie = new Cookie("username", username);
+            cookie.setPath("/");
+            resp.addCookie(cookie);
+            String output = new Gson().toJson(auth);
             resp.setStatus(200);
             resp.setHeader("Authorization", AuthorizeService.getToken(e));
-        }else if (auth.getUsername().equals(username)){
+            resp.getWriter().write(output);
+
+        }else if (!auth.getUsername().equals(username) || !auth.getPassword().equals(password)){
             resp.sendError(HttpServletResponse.SC_UNAUTHORIZED);
         }
 

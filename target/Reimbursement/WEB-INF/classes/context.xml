@@ -9,7 +9,7 @@
         </handler>
     </controller>
 
-
+<!--<controllers>-->
 <controller class="backend.Containers.Servlet.Controllers.LoginController" path="/login">
 <handler method="POST">
     <handle>doPost</handle>
@@ -18,5 +18,10 @@
         <handle>doGet</handle>
     </handler>
 </controller>
+    <controller class="backend.Containers.Servlet.Controllers.SubmitClaimController" path="/submitclaim">
+        <handler method="POST">
+            <handle>doPost</handle>
+        </handler>
+    </controller>
 </controllers>
 

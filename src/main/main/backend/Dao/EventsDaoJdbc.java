@@ -26,10 +26,10 @@ public class EventsDaoJdbc implements EventsDao {
                 Timestamp event_end = results.getTimestamp("event_end");
                 int status = results.getInt("status");
                 byte[] attachments = results.getBytes("attachments");
-                String name = results.getString("name");
+                String username = results.getString("username");
 //                events.add(new Events(event_id, reimbursement_type,cost, grade, grade_to_pass,
 //                        event_start,event_end,status, attachments, name));
-                return new Events(event_id,reimbursement_type,cost,grade,grade_to_pass,event_start,event_end,status,attachments,name);
+                return new Events(reimbursement_type,cost,grade,grade_to_pass,event_start,event_end,status,attachments,username);
 
             }
 
@@ -42,20 +42,19 @@ public class EventsDaoJdbc implements EventsDao {
     @Override
     public void createEvent(Events event){
         try(Connection conn = connectionUtil.getConnection()){
-            String query = "INSERT INTO events (event_id, reimbursement_type, cost," +
-                    "grade, grade_to_pass, event_start, event_end, status, attachments, name) VALUES " +
-                    "(?,?,?,?,?,?,?,?,?,?)";
+            String query = "INSERT INTO events (reimbursement_type, cost," +
+                    "grade, grade_to_pass, event_start, event_end, status, attachments, username) VALUES " +
+                    "(?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setInt(1, event.getEventID());
-            ps.setString(2, event.getReimbursementType());
-            ps.setDouble(3, event.getCost());
-            ps.setInt(4, event.getGrade());
-            ps.setInt(5,event.getGradeToPass());
-            ps.setTimestamp(6, event.getEventStart());
-            ps.setTimestamp(7, event.getEventEnd());
-            ps.setInt(8, event.getStatus());
-            ps.setBytes(9, event.getAttachments());
-            ps.setString(10,event.getName());
+            ps.setString(1, event.getReimbursementType());
+            ps.setDouble(2, event.getCost());
+            ps.setInt(3, event.getGrade());
+            ps.setInt(4,event.getGradeToPass());
+            ps.setTimestamp(5, event.getEventStart());
+            ps.setTimestamp(6, event.getEventEnd());
+            ps.setInt(7, event.getStatus());
+            ps.setBytes(8, event.getAttachments());
+            ps.setString(9,event.getUsername());
 
             ResultSet results =ps.executeQuery();
             if (results.next()){
@@ -80,7 +79,7 @@ public class EventsDaoJdbc implements EventsDao {
             ps.setTimestamp(6, event.getEventEnd());
             ps.setInt(7, event.getStatus());
             ps.setBytes(8, event.getAttachments());
-            ps.setString(9,event.getName());
+            ps.setString(9,event.getUsername());
             ps.setInt(10,event.getEventID());
 
             ps.execute();
